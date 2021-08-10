@@ -6,4 +6,4 @@ j = 1000
 k = 10000
 n = 1000000
 
-print(select(partially_random_array(i)))
+print(select(disordered_array(i)))

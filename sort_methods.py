@@ -34,8 +34,25 @@ def select(array):
     return array
 
 
-def shell(n):
-    print(n)
+def shell(array):
+    n = len(array)
+    gap = n/2
+
+    sublistcount = len(array)//2
+    while sublistcount > 0:
+
+        for startposition in range(sublistcount):
+            for i in range(startposition+gap, len(array), gap):
+                currentvalue = alist[i]
+                position = i
+
+                while position >= gap and array[position-gap] > currentvalue:
+                    array[position] = array[position-gap]
+                    position = position-gap
+
+                array[position] = currentvalue
+
+    return array
 
 
 def quick(n):
