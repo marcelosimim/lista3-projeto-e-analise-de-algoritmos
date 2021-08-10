@@ -6,5 +6,4 @@ j = 1000
 k = 10000
 n = 1000000
 
-print('insert')
-print(insert(partially_random_array(i)))
+print(select(partially_random_array(i)))
