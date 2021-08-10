@@ -8,8 +8,18 @@ def bubble(array):
     return array
 
 
-def insert(n):
-    print(n)
+def insert(array):
+    for index in range(1, len(array)):
+
+        value = array[index]
+        i = index - 1
+
+        while i >= 0 and array[i] > value:
+            array[i+1] = array[i]
+            i = i - 1
+        array[i+1] = value
+
+    return array
 
 
 def select(n):

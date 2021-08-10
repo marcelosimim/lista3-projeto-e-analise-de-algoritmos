@@ -6,4 +6,5 @@ j = 1000
 k = 10000
 n = 1000000
 
-print(bubble(partially_random_array(i)))
+print('insert')
+print(insert(partially_random_array(i)))
