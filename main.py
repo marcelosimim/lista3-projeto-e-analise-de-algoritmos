@@ -7,4 +7,4 @@ k = 10000
 n = 1000000
 
 array = disordered_array(i)
-print(quick(array, 0, i-1))
+print(heap(array))
