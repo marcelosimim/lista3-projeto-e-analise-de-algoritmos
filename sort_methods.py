@@ -1,3 +1,7 @@
+
+import time
+
+
 def bubble(array):
     for i in range(len(array)-1, 0, -1):
         for j in range(i):
@@ -9,17 +13,29 @@ def bubble(array):
 
 
 def insert(array):
+    comparisons = 0
+    movements = 0
+    start = time.time()
+
     for index in range(1, len(array)):
 
         value = array[index]
         i = index - 1
 
+        comparisons += 1
+        movements += 1
+
         while i >= 0 and array[i] > value:
             array[i+1] = array[i]
             i = i - 1
+            movements += 1
         array[i+1] = value
+        movements += 1
 
-    return array
+    end = time.time()
+    total_time = end - start
+
+    return comparisons, movements, total_time
 
 
 def select(array):
