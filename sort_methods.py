@@ -39,15 +39,23 @@ def insert(array):
 
 
 def select(array):
+    comparisons = 0
+    movements = 0
+    start = time.time()
     for i in range(0, len(array)-1):
         min_index = i
         for j in range(i, len(array)-1):
+            comparisons += 1
             if array[min_index] > array[j]:
                 min_index = j
         aux = array[i]
         array[i] = array[min_index]
         array[min_index] = aux
-    return array
+        movements += 3
+    end = time.time()
+    total_time = end - start
+
+    return comparisons, movements, total_time
 
 
 def shell(array):
