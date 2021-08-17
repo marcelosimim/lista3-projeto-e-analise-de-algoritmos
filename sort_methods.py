@@ -67,35 +67,52 @@ def select(array):
 
 
 def shell(array):
+    comparisons = 0
+    movements = 0
+    start = time.time()
+
     n = len(array)
-    gap = n/2
+    interval = n // 2
+    while interval > 0:
+        for i in range(interval, n):
+            temp = array[i]
+            j = i
 
-    sublistcount = len(array)//2
-    while sublistcount > 0:
+            while j >= interval and array[j - interval] > temp:
+                comparisons += 1
+                array[j] = array[j - interval]
+                j -= interval
 
-        for startposition in range(sublistcount):
-            for i in range(startposition+gap, len(array), gap):
-                currentvalue = alist[i]
-                position = i
+            array[j] = temp
+        interval //= 2
 
-                while position >= gap and array[position-gap] > currentvalue:
-                    array[position] = array[position-gap]
-                    position = position-gap
+    end = time.time()
+    total_time = end - start
 
-                array[position] = currentvalue
-
-    return array
+    return comparisons, movements, total_time
 
 
 def quick(array, low, high):
+    comparisons = 0
+    movements = 0
+    start = time.time()
+
+    comparisons += 1
     if len(array) == 1:
-        return array
+        end = time.time()
+        total_time = end - start
+        return comparisons, movements, total_time
     if low < high:
         pi = partition(array, low, high)
 
-        quick(array, low, pi-1)
-        quick(array, pi+1, high)
-    return array
+        c1, m1, t1 = quick(array, low, pi-1)
+        c2, m2, t2 = quick(array, pi+1, high)
+    end = time.time()
+    comparisons += c1 + c2
+    movements += m1 + m2
+    total_time = end - start + t1 + t2
+
+    return comparisons, movements, total_time
 
 
 def partition(array, low, high):
@@ -112,30 +129,57 @@ def partition(array, low, high):
 
 
 def heap(array):
+    comparisons = 0
+    movements = 0
+    time_aux = 0
+    start = time.time()
     n = len(array)
 
     for i in range(n // 2 - 1, -1, -1):
-        heapify(array, n, i)
+        c, m, t = heapify(array, n, i)
+        comparisons += c
+        movements += m
+        time_aux += t
 
     for i in range(n-1, 0, -1):
         array[i], array[0] = array[0], array[i]
-        heapify(array, i, 0)
+        movements += 2
+        c, m, t = heapify(array, i, 0)
+        comparisons += c
+        movements += m
+        time_aux += t
 
-    return array
+    end = time.time()
+    total_time = end - start + time_aux
+
+    return comparisons, movements, total_time
 
 
 def heapify(array, n, i):
+    comparisons = 0
+    movements = 0
+    time_aux = 0
+    start = time.time()
+
     largest = i
     l = 2 * i + 1
     r = 2 * i + 2
 
+    comparisons += 1
     if l < n and array[i] < array[l]:
         largest = l
-
+    comparisons += 1
     if r < n and array[largest] < array[r]:
         largest = r
-
+    comparisons += 1
     if largest != i:
         array[i], array[largest] = array[largest], array[i]
+        movements += 2
+        c, m, t = heapify(array, n, largest)
+        comparisons += c
+        movements += m
+        time_aux = t
+    end = time.time()
+    total_time = end - start + time_aux
 
-        heapify(array, n, largest)
+    return comparisons, movements, total_time

@@ -7,22 +7,22 @@ n = 100
 #n = 10000
 #n = 1000000
 
-algorithm = 'BUBLLE'
+algorithm = 'SHELL'
 
 print(f'========== N = {n} ==========\n\n')
 
-comparisons, movements, time_seconds = bubble(ordered_array(n))
+comparisons, movements, time_seconds = shell(ordered_array(n))
 print_results(
     f'ORDENADO - {algorithm}', comparisons, movements, time_seconds)
 
-comparisons, movements, time_seconds = bubble(disordered_array(n))
+comparisons, movements, time_seconds = shell(disordered_array(n))
 print_results(
     f'DESORDENADO - {algorithm}', comparisons, movements, time_seconds)
 
-comparisons, movements, time_seconds = bubble(random_array(n))
+comparisons, movements, time_seconds = shell(random_array(n))
 print_results(
     f'ALEATORIO - {algorithm}', comparisons, movements, time_seconds)
 
-comparisons, movements, time_seconds = bubble(partially_random_array(n))
+comparisons, movements, time_seconds = shell(partially_random_array(n))
 print_results(
     f'PARCIALMENTE ALEATORIO - {algorithm}', comparisons, movements, time_seconds)
