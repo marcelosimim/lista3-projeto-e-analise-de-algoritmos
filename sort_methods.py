@@ -3,13 +3,21 @@ import time
 
 
 def bubble(array):
+    comparisons = 0
+    movements = 0
+    start = time.time()
     for i in range(len(array)-1, 0, -1):
         for j in range(i):
+            comparisons += 1
             if array[j] > array[j+1]:
                 temp = array[j]
                 array[j] = array[j+1]
                 array[j+1] = temp
-    return array
+                movements += 3
+    end = time.time()
+    total_time = end - start
+
+    return comparisons, movements, total_time
 
 
 def insert(array):
